@@ -1,0 +1,84 @@
+# Python virtual environment
+.venv/
+
+# dependencies
+node_modules/
+.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+coverage/
+
+# next.js
+.next/
+out/
+
+# production
+build/
+
+# misc
+.DS_Store
+*.pem
+*.onnx
+*.webm
+videos/
+
+# Agent residues
+.blackbox/
+PLAN.md
+.claude/worktrees/
+.agents
+.planning
+AGENTS.md
+/thoughts
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files — keep .env.example tracked, ignore everything else
+.env
+.env.*
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+.agents
+.claude
+
+# BEGIN NOESIS GENERATED CONTEXT
+/AGENTS.md
+/CLAUDE.md
+/Context/AGENTS.md
+/Context/CLAUDE.md
+# END NOESIS GENERATED CONTEXT
+.omx/
+
+# Documentation
+.rpiv/
+.omc/
+.sisyphus/
+
+# Koda Mobile / dev artifacts
+.omo/
+__pycache__/
+scripts/mobile-startup.sh
+
+# Root-anchored macOS build output (Flutter).
+
+/macOS/
+
+# Runtime layer build output
+runtime/**/dist/

@@ -1,0 +1,26 @@
+#!/bin/bash
+set -euo pipefail
+
+# Boot shim for OMP: materialize its config files from env, then exec the
+# ACP server. OMP has no env-var overrides for model or providers — both
+# live in ~/.omp/agent/*.yml — so the box turns env (the only channel the
+# runtime's create API carries) into those files at start. This is the BYOK
+# injection path: OMP_MODELS_YML carries the user's provider config with
+# their key inlined; OMP_CONFIG_YML pins the default model.
+#
+# OMP_ACP_ARGS: optional extra args for `omp acp` (e.g. "--tools read,write,edit"
+# to slim the tool prompt for low-TPM keys). Runs inside the user's own box,
+# where the agent already executes arbitrary code — this adds no authority.
+
+mkdir -p "$HOME/.omp/agent"
+
+if [ -n "${OMP_CONFIG_YML:-}" ]; then
+  printf '%s\n' "$OMP_CONFIG_YML" > "$HOME/.omp/agent/config.yml"
+fi
+
+if [ -n "${OMP_MODELS_YML:-}" ]; then
+  printf '%s\n' "$OMP_MODELS_YML" > "$HOME/.omp/agent/models.yml"
+fi
+
+# shellcheck disable=SC2086 — word-splitting OMP_ACP_ARGS is intended.
+exec omp acp ${OMP_ACP_ARGS:-}

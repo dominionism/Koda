@@ -1,0 +1,22 @@
+[project]
+name = "koda-voice-agent"
+version = "0.1.0"
+description = "Koda v2 voice-to-voice agent — Pipecat pipeline over LiveKit with Cerebras, Whisper, and Kokoro."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pipecat-ai[silero,whisper,kokoro,livekit,openai]>=0.0.55",
+    "livekit>=0.18",
+    "livekit-api>=0.8",
+    "python-dotenv>=1.0",
+    "loguru>=0.7",
+    "numpy>=1.26",
+    "sounddevice>=0.5.5",
+]
+
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
